@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'helper/ui.dart';
 
@@ -54,7 +52,10 @@ class _RequestMantenanceState extends State<RequestMantenance>
                 MsUiBuilder.createFlatButton(
                     MdiIcons.qrcodeScan, Colors.black, "Scan QR",
                     onPressed: () {
-                  scan();
+                  //scan();
+                  setState(() {
+                    this.barcode = "IFTZ-001";
+                  });
                 }),
                 MsUiBuilder.createFlatButton(
                     MdiIcons.searchWeb, Colors.blue, "Search"),
@@ -76,20 +77,20 @@ class _RequestMantenanceState extends State<RequestMantenance>
     );
   }
 
-  Future scan() async {
-    try {
-      String getBarcode =
-          await FlutterBarcodeScanner.scanBarcode('#004297', 'Cancel', true);
+  // Future scan() async {
+  //   try {
+  //     String getBarcode =
+  //         await FlutterBarcodeScanner.scanBarcode('#004297', 'Cancel', true);
 
-      //query thing here
-
-      setState(() {
-        this.barcode = 'Machine-01';
-      });
-    } catch (e) {
-      setState(() {
-        this.barcode = "Unknow error: $e";
-      });
-    }
-  }
+  //     //query thing here
+  //     print(getBarcode);
+  //     setState(() {
+  //       this.barcode = 'Machine-01';
+  //     });
+  //   } catch (e) {
+  //     setState(() {
+  //       this.barcode = "Unknow error: $e";
+  //     });
+  //   }
+  // }
 }
