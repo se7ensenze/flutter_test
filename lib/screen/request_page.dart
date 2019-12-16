@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:shopingmall/screen/request_detail_page.dart';
 import 'helper/ui.dart';
 
 class RequestMantenance extends StatefulWidget {
@@ -62,13 +63,20 @@ class _RequestMantenanceState extends State<RequestMantenance>
               ],
             ),
           ),
-          Card(
-            child: Container(
-              padding: EdgeInsets.all(10),
-              alignment: Alignment.center,
-              child: Text(
-                this.barcode,
-                style: TextStyle(fontWeight: FontWeight.bold),
+          Container(
+            height: 300,
+            padding: EdgeInsets.all(10),
+            alignment: Alignment.center,
+            child: Card(
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (ctx) => RequestDetailPage()));
+                },
+                child: Text(
+                  this.barcode,
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
               ),
             ),
           )
