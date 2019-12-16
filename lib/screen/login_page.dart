@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shopingmall/screen/helper/ui.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:shopingmall/screen/widgets/formcard.dart';
 
 import 'home.dart';
 
@@ -27,39 +28,75 @@ class _LoginPageState extends State<LoginPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: MsUiBuilder.simpleAppBar(context),
+        backgroundColor: Colors.white,
+        resizeToAvoidBottomPadding: true,
         body: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              Icon(Icons.menu),
-              TextField(
-                obscureText: true,
-                decoration: InputDecoration(
-                    labelText: "Login Token", border: OutlineInputBorder()),
-              ),
-              showLoginButton()
-            ],
+          child: Container(
+            padding: EdgeInsets.fromLTRB(20, 10, 20, 0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Container(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "Welcome to ManuSmart",
+                    style:
+                        TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                FormCard(),
+                createSigninButton(context)
+              ],
+            ),
           ),
         ));
   }
 
-  Widget showLoginButton() {
-    return new Padding(
-      padding: EdgeInsets.fromLTRB(0.0, 45.0, 0.0, 0.0),
-      child: SizedBox(
-        height: 40.0,
-        child: new RaisedButton(
-            elevation: 5.0,
-            shape: new RoundedRectangleBorder(
-                borderRadius: new BorderRadius.circular(30.0)),
-            color: Colors.blue,
-            child: new Text('Login',
-                style: new TextStyle(fontSize: 20.0, color: Colors.white)),
-            onPressed: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Home()));
-            }),
+  Widget createFloatingActionButton(BuildContext context) {
+    return FloatingActionButton(
+      onPressed: () {
+        Navigator.pushNamed(context, "/home");
+      },
+      tooltip: "Scan QR Code",
+      child: Icon(MdiIcons.barcodeScan),
+    );
+  }
+
+  Widget createSigninButton(BuildContext context) {
+    return InkWell(
+      child: Container(
+        width: 330,
+        height: 80,
+        decoration: BoxDecoration(
+            gradient:
+                LinearGradient(colors: [Color(0xFF17ead9), Color(0xFF6078ea)]),
+            borderRadius: BorderRadius.circular(6.0),
+            boxShadow: [
+              BoxShadow(
+                  color: Color(0xFF6078ea).withOpacity(.3),
+                  offset: Offset(0.0, 8.0),
+                  blurRadius: 8.0)
+            ]),
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            onTap: () {
+              Navigator.pushNamed(context, "/home");
+            },
+            child: Center(
+              child: Text("SIGNIN",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: "Poppins-Bold",
+                      fontSize: 18,
+                      letterSpacing: 1.0)),
+            ),
+          ),
+        ),
       ),
     );
   }
